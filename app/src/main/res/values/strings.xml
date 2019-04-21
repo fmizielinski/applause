@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Applause</string>
+
+    <!-- region login -->
+
+    <string name="login_log_in">Log in</string>
+
+    <!-- endregion login -->
+</resources>
