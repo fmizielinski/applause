@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Applause</string>
 
-    <!-- region login -->
+    <!-- region repos -->
 
-    <string name="login_log_in">Log in</string>
+    <string name="repos_search" >Search</string>
 
-    <!-- endregion login -->
+    <!-- endregion repos -->
 </resources>
