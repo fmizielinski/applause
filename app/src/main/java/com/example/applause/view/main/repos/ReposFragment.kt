@@ -1,12 +1,14 @@
 package com.example.applause.view.main.repos
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.applause.R
+import com.example.applause.common.SimpleTextWatcher
 import com.example.applause.common.subscribe
 import com.example.applause.view.main.repos.adapter.RepoAdapter
 import com.example.applause.view.main.repos.adapter.RepoItemViewModel
@@ -30,6 +32,7 @@ class ReposFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecycler()
+        setUpSearch()
     }
 
     override fun onResume() {
@@ -48,9 +51,24 @@ class ReposFragment : Fragment() {
 
         recyclerRepos.layoutManager = layoutManager
         recyclerRepos.adapter = adapter
+
+        layoutReposList.setOnRefreshListener { viewModel.loadRepos(true) }
     }
 
     private fun setUpList(list: List<RepoItemViewModel>) {
         (recyclerRepos.adapter as? RepoAdapter)?.list = list
+
+        layoutReposList.isRefreshing = false
+    }
+
+    private fun setUpSearch() {
+        textReposSearch.addTextChangedListener(object : SimpleTextWatcher() {
+            override fun afterTextChanged(s: Editable?) {
+                if (s == null)
+                    return
+
+                viewModel.search(s.toString())
+            }
+        })
     }
 }

@@ -4,23 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerRepos"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="65dp" />
+        android:id="@+id/layoutReposList"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRepos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="65dp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textReposSearch"
         android:layout_width="0dp"
+        android:alpha="0.7"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:background="@drawable/background_search"
         android:hint="@string/repos_search"
-        android:padding="8dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

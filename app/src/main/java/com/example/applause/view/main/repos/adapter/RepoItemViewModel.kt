@@ -21,3 +21,6 @@ class RepoItemViewModel(private val repo: RepoUI) {
         onClickSubject.onNext(repo)
     }
 }
+
+fun List<RepoUI>.toViewModelList() =
+        map { RepoItemViewModel(it) }
