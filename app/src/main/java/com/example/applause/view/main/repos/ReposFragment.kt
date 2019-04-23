@@ -34,6 +34,7 @@ class ReposFragment : Fragment() {
 
         setUpRecycler()
         setUpSearch()
+        setUpError()
     }
 
     override fun onResume() {
@@ -41,6 +42,7 @@ class ReposFragment : Fragment() {
 
         viewModel.loadRepos()
         viewModel.repos.subscribe(this, ::setUpList)
+        viewModel.error.subscribe(this, ::displayError)
     }
 
     //endregion lifecycle
@@ -62,6 +64,9 @@ class ReposFragment : Fragment() {
         (recyclerRepos.adapter as? RepoAdapter)?.list = list
 
         layoutReposList.isRefreshing = false
+
+        groupReposError.visibility = View.GONE
+        recyclerRepos.visibility = View.VISIBLE
     }
 
     private fun setUpSearch() {
@@ -78,5 +83,17 @@ class ReposFragment : Fragment() {
     private fun openDetails(repo: RepoUI) {
         val action = ReposFragmentDirections.actionReposFragmentToDetailsFragment(repo)
         findNavController().navigate(action)
+    }
+
+    private fun displayError() {
+        layoutReposList.isRefreshing = false
+
+        groupReposError.visibility = View.VISIBLE
+        recyclerRepos.visibility = View.GONE
+    }
+
+    private fun setUpError() {
+        imageReposError.setOnClickListener { viewModel.loadRepos(true) }
+        textReposError.setOnClickListener { viewModel.loadRepos(true) }
     }
 }

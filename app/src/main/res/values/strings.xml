@@ -4,6 +4,7 @@
     <!-- region repos -->
 
     <string name="repos_search" >Search</string>
+    <string name="repos_error" > Oops… Something went wrong\nTap to retry</string>
 
     <!-- endregion repos -->
 </resources>

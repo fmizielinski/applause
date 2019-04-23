@@ -19,6 +19,15 @@ fun <T> Observable<T>.subscribe(
     return disposable
 }
 
+fun Observable<Unit>.subscribe(
+    lifecycleOwner: LifecycleOwner,
+    onNext: () -> Unit
+): Disposable {
+    val disposable = subscribe {onNext.invoke() }
+    lifecycleOwner.lifecycle.addObserver(RxLifecycleObserver(disposable))
+    return disposable
+}
+
 fun <T> Single<T>.subscribe(
     lifecycleOwner: LifecycleOwner,
     onNext: (T) -> Unit

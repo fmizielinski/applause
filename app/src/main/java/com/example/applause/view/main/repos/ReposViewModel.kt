@@ -9,6 +9,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import timber.log.Timber
 
 class ReposViewModel(
@@ -22,16 +23,24 @@ class ReposViewModel(
             querySubject
         ).flatMap { (repos, query) -> searchUseCase.execute(repos, query) }
 
+    val error: Observable<Unit>
+        get() = errorSubject
+
     private val reposSubject: BehaviorSubject<List<RepoUI>> = BehaviorSubject.create()
 
     private val querySubject: BehaviorSubject<String> = BehaviorSubject.createDefault("")
+
+    private val errorSubject: PublishSubject<Unit> = PublishSubject.create()
 
     fun loadRepos(refresh: Boolean = false) {
         if (reposSubject.hasValue() && !refresh)
             return
         getReposUseCase.execute()
             .runAsyncReturnOnMain()
-            .subscribe(reposSubject::onNext, Timber::e)
+            .subscribe(reposSubject::onNext) {
+                Timber.e(it)
+                errorSubject.onNext(Unit)
+            }
             .addTo(compositeDisposable)
     }
 

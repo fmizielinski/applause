@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
         android:id="@+id/layoutReposList"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -20,14 +20,47 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageReposError"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textReposError"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_percent="0.15"
+        app:srcCompat="@drawable/ic_dissatisfied_24px" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textReposError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/repos_error"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageReposError" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupReposError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="imageReposError,textReposError" />
+
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textReposSearch"
         android:layout_width="0dp"
-        android:alpha="0.7"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
+        android:alpha="0.7"
         android:background="@drawable/background_search"
         android:hint="@string/repos_search"
         android:padding="10dp"
