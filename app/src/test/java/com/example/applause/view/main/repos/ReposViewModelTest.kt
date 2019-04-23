@@ -60,6 +60,8 @@ class ReposViewModelTest : KoinTest {
 
         viewModel.loadRepos()
         viewModel.search("a")
+        viewModel.search("b")
+        viewModel.search("c")
 
         verify(apiService, times(1)).getRepositories()
     }
