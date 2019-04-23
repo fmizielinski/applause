@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsLanguage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDetailsTitle"
+        tools:text="Java" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageDetailsStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textDetailsLanguage"
+        app:layout_constraintStart_toEndOf="@+id/textDetailsLanguage"
+        app:layout_constraintTop_toTopOf="@+id/textDetailsLanguage"
+        app:srcCompat="@drawable/ic_star_24px" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsStarsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDetailsStar"
+        app:layout_constraintStart_toEndOf="@+id/imageDetailsStar"
+        app:layout_constraintTop_toTopOf="@+id/imageDetailsStar"
+        tools:text="4" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageDetailsOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textDetailsStarsCount"
+        app:layout_constraintStart_toEndOf="@+id/textDetailsStarsCount"
+        app:layout_constraintTop_toTopOf="@+id/textDetailsStarsCount"
+        tools:srcCompat="@drawable/ic_star_24px" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsOwner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageDetailsOwner"
+        app:layout_constraintStart_toEndOf="@+id/imageDetailsOwner"
+        app:layout_constraintTop_toTopOf="@+id/imageDetailsOwner"
+        tools:text="Owner" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDetailsOwner"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textDetailsLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:autoLink="web"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDetailsDescription"
+        tools:text="https://google.com" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

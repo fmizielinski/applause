@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.applause.R
 import com.example.applause.common.SimpleTextWatcher
 import com.example.applause.common.subscribe
+import com.example.applause.domain.entity.RepoUI
 import com.example.applause.view.main.repos.adapter.RepoAdapter
-import com.example.applause.view.main.repos.adapter.RepoItemViewModel
 import kotlinx.android.synthetic.main.fragment_repos.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -48,6 +49,8 @@ class ReposFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
 
         val adapter = RepoAdapter()
+        adapter.onClickSubject
+            .subscribe(this, ::openDetails)
 
         recyclerRepos.layoutManager = layoutManager
         recyclerRepos.adapter = adapter
@@ -55,7 +58,7 @@ class ReposFragment : Fragment() {
         layoutReposList.setOnRefreshListener { viewModel.loadRepos(true) }
     }
 
-    private fun setUpList(list: List<RepoItemViewModel>) {
+    private fun setUpList(list: List<RepoUI>) {
         (recyclerRepos.adapter as? RepoAdapter)?.list = list
 
         layoutReposList.isRefreshing = false
@@ -70,5 +73,10 @@ class ReposFragment : Fragment() {
                 viewModel.search(s.toString())
             }
         })
+    }
+
+    private fun openDetails(repo: RepoUI) {
+        val action = ReposFragmentDirections.actionReposFragmentToDetailsFragment(repo)
+        findNavController().navigate(action)
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
@@ -18,9 +19,9 @@ fun <T> Observable<T>.subscribe(
     return disposable
 }
 
-fun Completable.subscribe(
+fun <T> Single<T>.subscribe(
     lifecycleOwner: LifecycleOwner,
-    onNext: () -> Unit
+    onNext: (T) -> Unit
 ): Disposable {
     val disposable = subscribe(onNext)
     lifecycleOwner.lifecycle.addObserver(RxLifecycleObserver(disposable))

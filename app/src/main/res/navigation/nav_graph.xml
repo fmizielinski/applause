@@ -9,8 +9,18 @@
         android:id="@+id/reposFragment"
         android:name="com.example.applause.view.main.repos.ReposFragment"
         android:label="ReposFragment"
-        tools:layout="@layout/fragment_repos" />
-    <action
-        android:id="@+id/action_global_reposFragment"
-        app:destination="@id/reposFragment" />
+        tools:layout="@layout/fragment_repos" >
+        <action
+            android:id="@+id/action_reposFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.applause.view.main.details.DetailsFragment"
+        tools:layout="@layout/fragment_details"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="repo"
+            app:argType="com.example.applause.domain.entity.RepoUI" />
+    </fragment>
 </navigation>

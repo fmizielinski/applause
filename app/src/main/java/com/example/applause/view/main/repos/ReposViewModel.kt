@@ -5,8 +5,6 @@ import com.example.applause.common.runAsyncReturnOnMain
 import com.example.applause.domain.entity.RepoUI
 import com.example.applause.domain.usecase.GetReposUseCase
 import com.example.applause.domain.usecase.SearchUseCase
-import com.example.applause.view.main.repos.adapter.RepoItemViewModel
-import com.example.applause.view.main.repos.adapter.toViewModelList
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
@@ -18,12 +16,11 @@ class ReposViewModel(
     private val searchUseCase: SearchUseCase
 ) : BaseViewModel() {
 
-    val repos: Observable<List<RepoItemViewModel>>
+    val repos: Observable<List<RepoUI>>
         get() = Observables.combineLatest(
             reposSubject,
             querySubject
         ).flatMap { (repos, query) -> searchUseCase.execute(repos, query) }
-            .map(List<RepoUI>::toViewModelList)
 
     private val reposSubject: BehaviorSubject<List<RepoUI>> = BehaviorSubject.create()
 
