@@ -8,7 +8,6 @@ import kotlinx.android.parcel.Parcelize
 data class RepoUI(
     val name: String,
     val ownerName: String,
-    val ownerAvatar: String,
     val url: String,
     val description: String?,
     val stars: Int,
@@ -19,7 +18,6 @@ fun Repo.toRepoUI() =
         RepoUI(
             name,
             owner.login,
-            owner.avatarUrl,
             htmlUrl,
             description,
             stargazersCount,
